@@ -1,0 +1,80 @@
+---
+title: "Global Watcher- Letterboxd Visualization Project"
+output: html_notebook
+---
+
+Convert csv file that I created through Globalwatcher.ipynb to movies dataframe.
+```{r}
+movies <- read.csv("tmdb_movies.csv")
+```
+
+Algorithm I used to check which language values I have to change.
+```{r}
+for (x in movies$original_language){
+  if (nchar(x) == 2){
+    print(x)
+  } else if (nchar(x) > 2) {
+    print("No language values needed to be changed!")
+    break
+  }
+}
+```
+
+I changed the original_language values to real languages. The source to the TMDB language codes are [here](https://github.com/travisbell/tmdb-web-translations/blob/main/languages/en-US.yml) 
+```{r}
+count = 0
+for (x in movies$original_language){
+  count <- count + 1
+  if (x == "en") {
+    movies$original_language[count] = "English"
+  }
+  if (x == "ko") {
+    movies$original_language[count] = "Korean"
+  }
+   if (x == "fr") {
+    movies$original_language[count] = "French"
+   }
+     if (x == "ja") {
+    movies$original_language[count] = "Japanese"
+     }
+       if (x == "fi") {
+    movies$original_language[count] = "Finnish"
+       }
+        if (x == "pt") {
+    movies$original_language[count] = "Portuguese"
+         }
+      if (x == "hi") {
+    movies$original_language[count] = "Hindi"
+      }
+     if (x == "it") {
+    movies$original_language[count] = "Italian"
+     }
+     if (x == "cn") {
+    movies$original_language[count] = "Chinese"
+     }
+     if (x == "de") {
+    movies$original_language[count] = "German"
+     }
+     if (x == "tl") {
+    movies$original_language[count] = "Tagalog"
+     }
+     if (x == "sv") {
+    movies$original_language[count] = "Swedish"
+     }
+     if (x == "es") {
+    movies$original_language[count] = "Spanish"
+     }
+     if (x == "hy") {
+    movies$original_language[count] = "Armenian"
+     }
+     if (x == "zh") {
+    movies$original_language[count] = "Chinese"
+     }
+}
+```
+
+
+
+
+
+
