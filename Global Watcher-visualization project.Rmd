@@ -149,20 +149,22 @@ highchart() %>%
 
 ```
 ```{r}
-moviesrevised <- select(movies, Logged_Year, Rating)
+moviesrevised <- select(movies, Logged_Week, Rating)
 
 keeprows = c()
 for(x in 1:393){
-  if (movies$Rating[x] == 0){
+  if (movies$Rating[x] == 0.0){
     keeprows <- append(keeprows,x)
   }
 }
 
 moviesrevised <- moviesrevised[-c(keeprows), ] 
 
+moviesrevised <- moviesrevised[ order(moviesrevised$Logged_Week,decreasing = FALSE),]
 
-plotSparklineTable(moviesrevised, row.var = 'Rating', col.vars = 'Logged_Year')
+plot(moviesrevised$Rating ~ moviesrevised$Logged_Week, type = "o")
 ```
+
 
 
 
