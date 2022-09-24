@@ -94,14 +94,75 @@ for (x in movies$original_language){
 
 Interactive barchart of original languages vs. ratings
 ```{r}
-value <- as.vector(movies[,13])
-highchart()%>%
-  hc_chart(type = "column") %>%
-  hc_add_series(data = value) %>%
-  hc_xAxis(categories = movies$original_language) %>%
-  hc_add_theme(hc_theme_tufte2())
+fig1 <- select(movies,original_language,Rating)
+ec = 0
+ec_count = 0
+asianc = 0
+ac_count = 0
+euc = 0
+euc_count = 0
+hc = 0
+hc_count = 0
+
+for (x in 1:393){
+if (fig1$original_language[x] == "English")
+    {
+    if (fig1$Rating[x] != 0.0){
+    ec_count = ec_count + 1
+    ec = ec + fig1$Rating[x] 
+    }
+}else if (fig1$original_language[x] == "Korean" || fig1$original_language[x] == "Japanese"|| fig1$original_language[x] == "Hindi"|| fig1$original_language[x] == "Chinese"|| fig1$original_language[x] == "Tagalog"|| fig1$original_language[x] == "Chinese"){
+  if (fig1$Rating[x] != 0.0){
+    ac_count = ac_count + 1
+    asianc = asianc + fig1$Rating[x] 
+  }
+}else if (fig1$original_language[x] == "French"|| fig1$original_language[x] == "Finnish"|| fig1$original_language[x] == "Portuguese"|| fig1$original_language[x] == "Italian"|| fig1$original_language[x] == "German"|| fig1$original_language[x] == "Swedish"|| fig1$original_language[x] == "Armenian"){
+  if (fig1$Rating[x] != 0.0){
+    euc_count = euc_count + 1
+    euc = euc + fig1$Rating[x]
+}
+} else if (fig1$original_language[x] == "Spanish"){
+  if (fig1$Rating[x] != 0.0){
+    hc_count = hc_count + 1
+    hc = hc + fig1$Rating[x]
+  }
+}
+}
+
+ec = ec/ec_count
+asianc = asianc/ac_count
+euc = euc/euc_count
+hc = hc/hc_count
+
 ```
 
+```{r}
+list1 = c(ec,asianc,euc,hc)
+list1categories = c("English", "Asian", "European", "Latino")
+
+highchart() %>%
+  hc_chart(type = "column") %>%
+  hc_add_series(data = list1) %>%
+  hc_xAxis(categories = list1categories) %>%
+  hc_add_theme(hc_theme_tufte2())%>%
+  hc_title(text = "Average Rating for Movies' Origin Countries")
+
+```
+```{r}
+moviesrevised <- select(movies, Logged_Year, Rating)
+
+keeprows = c()
+for(x in 1:393){
+  if (movies$Rating[x] == 0){
+    keeprows <- append(keeprows,x)
+  }
+}
+
+moviesrevised <- moviesrevised[-c(keeprows), ] 
+
+
+plotSparklineTable(moviesrevised, row.var = 'Rating', col.vars = 'Logged_Year')
+```
 
 
 
