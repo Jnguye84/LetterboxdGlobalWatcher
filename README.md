@@ -1,4 +1,4 @@
-<h?> LetterboxdGlobalWatcher </h?>
+<h> LetterboxdGlobalWatcher </h>
 
 <b> So by using Jasmine's letterboxd data that I extracted from TMDB and using <a href="https://github.com/amotter443/movies">this repository</a> as instructions, I attempted to answer the question of if Jasmine is a "global watcher?" </b>
 
