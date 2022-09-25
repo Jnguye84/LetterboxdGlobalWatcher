@@ -145,9 +145,10 @@ highchart() %>%
   hc_add_series(data = list1) %>%
   hc_xAxis(categories = list1categories) %>%
   hc_add_theme(hc_theme_tufte2())%>%
-  hc_title(text = "Average Rating for Movies' Origin Countries")
+  hc_title(text = "Which Cultural Region has the Average Highest Movie Ratings?")
 
 ```
+
 ```{r}
 moviesrevised <- select(movies, Logged_Week, Rating)
 
@@ -162,9 +163,43 @@ moviesrevised <- moviesrevised[-c(keeprows), ]
 
 moviesrevised <- moviesrevised[ order(moviesrevised$Logged_Week,decreasing = FALSE),]
 
-plot(moviesrevised$Rating ~ moviesrevised$Logged_Week, type = "o")
+plot(moviesrevised$Rating ~ moviesrevised$Logged_Week, type = "o",pch = 20, col = "blue", xlab = "Logged Weeks", ylab = "Ratings")%>%
+  title(main = "Does Having Letterboxd Help Diversify Your Watchlist?")
+```
+```{r}
+d = sum(movies$Drama)
+com = sum(movies$Comedy) + sum(movies$Rom_Com)
+rom = sum(movies$Romance) + sum(movies$Rom_Com)
+fan = sum(movies$Fantasy)
+adv = sum(movies$Adventure)
+act = sum(movies$Action)
+crim = sum(movies$Crime)
+thr = sum(movies$Thriller)
+h = sum(movies$History)
+dom = sum(movies$Documentary)
+hor = sum(movies$Horror)
+mus = sum(movies$Music)
+mys = sum(movies$Mystery)
+sci = sum(movies$Sci_Fi)
+war = sum(movies$War)
+wes = sum(movies$Western)
+ani = sum(movies$Animation)
+
+xlist<- c(d,com,rom,fan,adv,act,crim,thr,h,dom,hor,mus,mys,sci,war,wes,ani)
+xnames <- c(colnames(movies[21:37]))
+
+dev.new(width=10, height=6)
+oldp <- par(mar=c(5.1, 8.1, 2.1, 1.1))
+barplot(xlist, names.arg = xnames,cex.names=.7, horiz=TRUE, las=1, main = "Which Genre do I Watch the Most?")
+par(oldp)
+out <- barplot(xlist, names.arg = xnames,cex.names=.7, horiz=TRUE, las=1, main = "Which Genre do I Watch the Most?")
+text(out, rep(-.1, 6), names(xlist), srt=45, pos=2, xpd=NA, cex=.75)
+
 ```
 
+```{r}
+
+```
 
 
 
