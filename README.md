@@ -4,7 +4,7 @@
 
 Using these three graphs, I answered the questions, "What Genre Does Jasmine Watch the Most of?", "Does Having a Letterboxd Account Affect How You Watch Movies?", and "What Cultural Region Does Jasmine Enjoy Watching the Most?" 
 
-One Question of Further Exploration is by taking the Genre graph and seeing how can I can see seperate the bars into different colors for different cultural regions? For example, how much of the Drama bar is comprised of Asian Films? How much of the Documentary bar is comprised of European films?
+One Question of Further Exploration is by taking the Genre graph and seeing how can I seperate the bars into different colors for different cultural regions? For example, how much of the Drama bar is comprised of Asian Films? How much of the Documentary bar is comprised of European films?
 
 <img width="561" alt="whichgenredoiwatchthemost" src="https://user-images.githubusercontent.com/89553284/192156971-07262199-2f39-4034-8423-fce2e9f5ca63.png">
 Jasmine clearly watches Dramas more than any other genre with it being at 250 movies and the second most being 125 movies. How I would want to explore this further is having a legend to specify the cultural regions that comprise each bar.
